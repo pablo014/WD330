@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Week 1 Notes</title>
+    <script>
+        function saveStory(){
+            var name = document.getElementById("name").value;
+            var quest = document.getElementById("quest").value;
+            localStorage.setItem(name, quest);
+            alert("Successfully Saved Story");
+        }
+        function loadStory(){
+            var name = document.getElementById("name").value;
+            var HTML = localStorage.getItem(name);
+            document.getElementById("display").innerHTML = HTML;
+        }
+    </script>
+</head>
+<body>
+    <p>This section talks about how to save and load from local storage.</p>
+    <p>What is your name?</p>
+    <input type="text" id="name">
+    <button onclick="loadStory()">Load Story</button>
+    <p>What is your quest?</p>
+    <input type="textarea" id="quest">
+    <button onclick="saveStory()">Save Story</button><br><br>
+    <textarea id="display"></textarea>
+</body>
+</html>
