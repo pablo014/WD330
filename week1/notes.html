@@ -9,18 +9,19 @@
         function saveStory(){
             var name = document.getElementById("name").value;
             var quest = document.getElementById("quest").value;
-            localStorage.setItem(name, quest);
+            localStorage.setItem(name, quest); //This will call a local storage object that will save onto the local drive
             alert("Successfully Saved Story");
         }
         function loadStory(){
             var name = document.getElementById("name").value;
-            var HTML = localStorage.getItem(name);
+            var HTML = localStorage.getItem(name); //This will call local storage object that will load the file based on a key value pair if one exists
             document.getElementById("display").innerHTML = HTML;
         }
     </script>
 </head>
 <body>
-    <p>This section talks about how to save and load from local storage.</p>
+    <h1>Local Storage</h1>
+    <p>This section goes over how to save and load from local storage.</p>
     <p>What is your name?</p>
     <input type="text" id="name">
     <button onclick="loadStory()">Load Story</button>
@@ -28,5 +29,19 @@
     <input type="textarea" id="quest">
     <button onclick="saveStory()">Save Story</button><br><br>
     <textarea id="display"></textarea>
+    <h2>The JavaScript</h2>
+    <code>
+            function saveStory(){
+                var name = document.getElementById("name").value;
+                var quest = document.getElementById("quest").value;
+                localStorage.setItem(name, quest); //This will call a local storage object that will save onto the local drive
+                alert("Successfully Saved Story");
+            }
+            function loadStory(){
+                var name = document.getElementById("name").value;
+                var HTML = localStorage.getItem(name); //This will call local storage object that will load the file based on a key value pair if one exists
+                document.getElementById("display").innerHTML = HTML;
+            }
+    </code>
 </body>
 </html>

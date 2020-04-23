@@ -1,0 +1,25 @@
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background-color: lightblue;
+    text-align: center;
+}
+
+nav ul li:first-child {
+    display: block;
+}
+
+nav ul li {
+    display: none;
+}
+
+nav ul li a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+}
+
+.show li {
+    display: block;
+}
