@@ -23,3 +23,7 @@ nav ul li a {
 .show li {
     display: block;
 }
+
+code {
+    background-color: blanchedalmond;
+}
