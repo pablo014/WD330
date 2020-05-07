@@ -74,7 +74,22 @@ myCar.year = 1969;
             }
         </code>
 
+        <p>To get a class from another file</p>
+        <p>the other file</p>
+        <code>export class Person {
+            sayHello() {
+                console.log("Hello");
+            }
+        }
+        </code>
+        <p>Main file</p>
+        <code>
+            import { Person } from './person.js';
+            let person1 = new Person()
+        </code>
+        <p>To use on script tag add</p>
+        <code>type="module"</code>
     </main>
-    <footer></footer>
+    <footer>&copy; 2020 | Portfolio | Angelo Pablo</footer>
 </body>
 </html>
