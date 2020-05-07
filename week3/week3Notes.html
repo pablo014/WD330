@@ -7,6 +7,66 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <header>
+        <nav>
+            <ul id="navigation">
+                <li id="menu">&equiv; Menu</li>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="/week3/TeamActivity.html">Team Activity</a></li>
+                <li><a href="index.html">Back</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>Week 3 Notes</h1>
+        <h2>This</h2>
+        <p>The this keyword is a keyword that specifies an object and it changes within the context. There are differences in the global, object, and function frame</p>
+        <h3>Global</h3>
+        <code>console.log(this)</code>
+        <p>You probably will never use this, because the information in here isn't in too much importance</p>
+        <h3>Object</h3>
+        <code>
+            function Human (age) {
+            this.age = age
+          }
+          
+          let greg = new Human(22)
+          let thomas = new Human(24)
+          
+          console.log(greg) // this.age = 22
+          console.log(thomas) // this.age = 24</code>
+        <h3>Function</h3>
+        <code>function simpleFunction () {
+            console.log(this)
+          }
+          
+          const o = {
+            sayThis () {
+              simpleFunction()
+            }
+          }
+          
+          simpleFunction() // Window
+          o.sayThis() // Window</code>
+          <p>Use this in functions to remain in the same method</p>
+        <h2>Objects</h2>
+        <p>Objects can be created in multiple ways</p>\
+        <code>
+            var myCar = new Object();
+myCar.make = 'Ford';
+myCar.model = 'Mustang';
+myCar.year = 1969;
+        </code>
+        <p>or</p>
+        <code>var myCar = {
+            make: 'Ford',
+            model: 'Mustang',
+            year: 1969
+        };</code>
+        <h2>DOM</h2>
+        <h2>Events</h2>
+
+    </main>
+    <footer></footer>
 </body>
 </html>
