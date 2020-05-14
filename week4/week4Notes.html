@@ -19,6 +19,15 @@
         <p>Within forms you can add inputs that allows the user to insert information.</p>
         <code><label for="fname">First Name: </label> <input id="fname" type="text"></code>
         <p>There are many forms of inputs that can be researched on how to make them. Some of them can be found in W3Schools.com</p>
+        <p>To collect the information via javascript you have to create an event listener and grab the necessary values</p>
+        <code>
+            document.querySelector('input[type="submit"]').addEventListener('click', form)
+            function form(event) {
+                let first = document.getElementById("firstname").value;
+                console.log(firstname);
+                event.preventDefault();
+            }
+        </code>
         <h2>Object Oriented Programming</h2>
         <p>An object is a group of information that specifically deals with a specific thing. For example this would be an example of a 2018 Ford Mustang</p>
         <code>var myCar = {
