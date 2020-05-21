@@ -1,0 +1,12 @@
+table, td {
+    border: 1px solid gray;
+    padding: 5px;
+}
+
+.filter {
+    padding: 5px;
+}
+
+#header, table {
+    text-align: center;
+}

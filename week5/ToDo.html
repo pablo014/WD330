@@ -4,14 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="./Stylesheets/main.css">
     <title>Document</title>
 </head>
 <body>
-    
-    <div id="all" class="filter">All</div>
-    <div id="complete" class="filter">Complete</div>
-    <div id="incomplete" class="filter">Incomplete</div>
+    <div id="header">
+    <span id="all" class="filter">All</span>
+    <span id="complete" class="filter">Complete</span>
+    <span id="incomplete" class="filter">Incomplete</span>
+    </div>
+    <br>
     <table>
         <thead>
             <tr>
@@ -23,10 +25,11 @@
         </thead>
         <tbody id="table"></tbody>
     </table>
+    <br>
     <div>
         <form>
             <label for="task">Task: </label>
-            <input type="text" id="task">
+            <input type="text" id="task"><br>
             <label for="endDate">End Date: </label>
             <input type="date" id="endDate">
             <button id="submit" onclick="add()">Add</button>
