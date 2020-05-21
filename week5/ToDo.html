@@ -8,15 +8,20 @@
     <title>Document</title>
 </head>
 <body>
+    
+    <div id="all" class="filter">All</div>
+    <div id="complete" class="filter">Complete</div>
+    <div id="incomplete" class="filter">Incomplete</div>
     <table>
         <thead>
             <tr>
                 <td>Task</td>
                 <td>Time</td>
-                <td>Done</td>
+                <td>Status</td>
+                <td></td>
             </tr>
         </thead>
-        <tbody></tbody>
+        <tbody id="table"></tbody>
     </table>
     <div>
         <form>
@@ -24,9 +29,11 @@
             <input type="text" id="task">
             <label for="endDate">End Date: </label>
             <input type="date" id="endDate">
-            <button type="submit">Add</button>
+            <button id="submit" onclick="add()">Add</button>
         </form>
     </div>
+    <div id="test"></div>
+    <div id="test2"></div>
     <script src="./Scripts/ToDo.js" type="module"></script>
 </body>
 </html>
