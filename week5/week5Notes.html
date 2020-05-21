@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <p>There are a few ways to debug in Javascript. The main ways to do so are these</p>
+    <ul>
+        <li>console.log()</li>
+        <li>alert()</li>
+        <li>DOM</li>
+    </ul>
+    <p>console.log() allows the user to place a value within it. This will then print it into the console so that you can see it. This example function is a small example of testing and debugging using console.log()</p>
+    <code>
+        var string = "Inside debug"
+        function test() {
+            debug();
+        }
+        function debug(){
+            console.log(string)
+        }
+    </code>
+    <p>alert() allows the user to see the result when the website is running. It will show a pop up when the script is run</p>
+    <code>
+        function debug() {
+            alert('inside debug')
+        }
+    </code>
+    <p>You can also place your debug inside the DOM, however it is not advised. Here is an example</p>
+    <p>practice html (see in inspect)</p>
+    <code>
+        <body><div></div></body>
+    </code>
+    <p>practice js</p>
+    <code>
+        function debug() {
+            document.querySelector('div').innerHTML = "inside debug"
+        }
+    </code>
+</body>
+</html>
