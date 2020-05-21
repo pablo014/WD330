@@ -8,14 +8,11 @@ document.getElementById('all').addEventListener('click', filter);
 document.getElementById('complete').addEventListener('click', filter);
 document.getElementById('incomplete').addEventListener('click', filter);
 
-function loadTable() {
+function load(array) {
     let text = "";
     let it = 0;
-    if (localStorage.getItem('events')) {
-        table = JSON.parse(localStorage.getItem('events'));
-        
-        //display table
-    table.forEach(
+    //display table
+    array.forEach(
         event => {
 
             //append a string based on information
@@ -34,11 +31,19 @@ function loadTable() {
             it++;
         }
     );
-    }
     //go through and add event listeners
     for (let i  = 0; i < table.length; i++) {
         document.getElementById(i).addEventListener('click', complete)
         document.getElementById('delete'+i).addEventListener('click', erase)
+    }
+}
+
+function loadTable() {
+    // let text = "";
+    // let it = 0;
+    if (localStorage.getItem('events')) {
+        table = JSON.parse(localStorage.getItem('events'));
+        load(table);
     }
 }
 
@@ -117,32 +122,5 @@ function filter() {
             }
         )
     }
-
-    let text = "";
-    let it = 0;
-    newTable.forEach(
-        event => {
-
-            //append a string based on information
-            text += '<tr><td>' + event.content + '</td><td>' + event.id + '</td><td id=\'' + it + '\'>'; //it is being used to track where in the array each item is to give an individual id
-            if (event.completed) {
-                text += 'Complete</td>';
-            }
-            else {
-                text += 'Incomplete</td>';
-            }
-            text += '<td><button id=\'delete'+ it +'\'>Remove</button></td></tr>';
-            //Add it onto the html
-            document.querySelector('tbody').innerHTML = text;
-            
-            //increase iterator
-            it++;
-        }
-    );
-    
-    //go through and add event listeners
-    for (let i  = 0; i < table.length; i++) {
-        document.getElementById(i).addEventListener('click', complete)
-        document.getElementById('delete'+i).addEventListener('click', erase)
-    }
+    load(newTable);
 }
