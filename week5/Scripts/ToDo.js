@@ -16,7 +16,7 @@ function load(array) {
         event => {
 
             //append a string based on information
-            text += '<tr><td>' + event.content + '</td><td>' + event.id + '</td><td id=\'' + it + '\'>'; //it is being used to track where in the array each item is to give an individual id
+            text += '<tr><td>' + event.content + '</td><td>' + event.id + '</td><td class=\'status\' id=\'' + it + '\'>'; //it is being used to track where in the array each item is to give an individual id
             if (event.completed) {
                 text += 'Complete</td>';
             }

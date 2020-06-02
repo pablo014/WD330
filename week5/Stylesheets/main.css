@@ -14,3 +14,7 @@ table, td {
 table {
     margin: 0 auto;
 }
+
+.status, span {
+    color: blue;
+}
