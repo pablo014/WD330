@@ -1,0 +1,20 @@
+table, td {
+    border: 1px solid gray;
+    padding: 5px;
+}
+
+.filter {
+    padding: 5px;
+}
+
+#header, table, div {
+    text-align: center;
+}
+
+table {
+    margin: 0 auto;
+}
+
+.status, span {
+    color: blue;
+}
