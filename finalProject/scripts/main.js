@@ -1,20 +1,20 @@
-api = "RGAPI-182c61ff-d523-4499-8eea-7549d6ad4902"
+proxyurl = "https://cors-anywhere.herokuapp.com/"
+api = "RGAPI-83857343-3a08-44bf-b12e-6eb687fb3214"
 
 window.addEventListener('load', function() {
-    const url = "na1.api.riotgames.com";
-    fetch(url, {
-        method: "GET",
-        headers: {
-            "X-Auth-Token": api
+    const url = "https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/N3WBKILR?api_key=" + api;
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if(this.readyState == 4 && this.status == 200) {
+            let response = JSON.parse(this.responseText)
+            console.log(this.responseText)
+            getSummonerId(response)
         }
     }
-    )
+    xhttp.open("GET", url, true);
+    xhttp.send()
 })
-.then(resp => resp.json())
-.then(function(data){
-    console.log(data);
 
-    // let output = "";
-    // output += '<div> ${} </div>'
+function getSummonerId(response) {
+    document.querySelector("main").innerHTML = response.name;
 }
-)
