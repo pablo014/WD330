@@ -15,25 +15,36 @@ function addUsers() {
     let newSummoner;
     let response = "this didnt work"
     const url = "https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/"+ name +"?api_key=" + api;
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if(this.readyState == 4 && this.status == 200) {
-            response = JSON.parse(this.responseText)
-            newSummoner = new Summoner(response.id, response.name)
-            //alert (newSummoner.name)
-            //sleep(3000)
-            //users.push(newSummoner)
-            // localStorage.setItem('users', users)
+    // var xhttp = new XMLHttpRequest();
+    // xhttp.onreadystatechange = function() {
+    //     if(this.readyState == 4 && this.status == 200) {
+    //         response = JSON.parse(this.responseText)
+    //         newSummoner = new Summoner(response.id, response.name)
+    //         //alert (newSummoner.name)
+    //         //sleep(3000)
+    //         //users.push(newSummoner)
+    //         // localStorage.setItem('users', users)
+    //     }
+    // }
+    // xhttp.open("GET", url, true)
+    // xhttp.onload = function() {
+    //     // response = JSON.parse(this.responseText)
+    //     // newSummoner = new Summoner(response.id, response.name)
+    //     alert (newSummoner.name)
+    //     users.push(newSummoner)
+    // }
+    // xhttp.send()
+    fetch(url, {
+        method: 'GET',
+        credentials: 'include',
+        headers: {
+            "X-Auth-Token": api
         }
-    }
-    xhttp.open("GET", url, true)
-    xhttp.onload = function() {
-        // response = JSON.parse(this.responseText)
-        // newSummoner = new Summoner(response.id, response.name)
-        alert (newSummoner.name)
-        users.push(newSummoner)
-    }
-    xhttp.send()
+    })
+    .then(response => response.json())
+    .then(summonerInfo => {
+        
+    }).catch(console.log(error));
 }
 
 function getUsers() {
