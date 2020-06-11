@@ -1,5 +1,5 @@
 import { Summoner } from "./summoner.js";
-let api = "RGAPI-83857343-3a08-44bf-b12e-6eb687fb3214";
+let api = "RGAPI-842298e3-51df-49b7-819f-6e6cf18e0579";
 let users = [];
 window.addEventListener('load', function() {
     getUsers();
@@ -34,17 +34,17 @@ function addUsers() {
     //     users.push(newSummoner)
     // }
     // xhttp.send()
-    fetch(url, {
-        method: 'GET',
-        credentials: 'include',
-        headers: {
-            "X-Auth-Token": api
-        }
-    })
+    fetch(url)
     .then(response => response.json())
     .then(summonerInfo => {
-        
-    }).catch(console.log(error));
+        console.log(summonerInfo)
+        newSummoner = new Summoner(summonerInfo['id'], summonerInfo['name']);
+        // users.push[newSummoner]
+        //localStorage.setItem('users', newSummoner)
+    })
+    .then(
+        console.log(newSummoner)
+    )
 }
 
 function getUsers() {
