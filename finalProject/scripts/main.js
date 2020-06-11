@@ -6,45 +6,29 @@ window.addEventListener('load', function() {
 })
 document.getElementById('add').addEventListener('click', addUsers);
 
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-  }
+// function sleep(ms) {
+//     return new Promise(resolve => setTimeout(resolve, ms));
+//   }
 
 function addUsers() {
     let name = document.getElementById("name").value;
     let newSummoner;
-    let response = "this didnt work"
     const url = "https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/"+ name +"?api_key=" + api;
-    // var xhttp = new XMLHttpRequest();
-    // xhttp.onreadystatechange = function() {
-    //     if(this.readyState == 4 && this.status == 200) {
-    //         response = JSON.parse(this.responseText)
-    //         newSummoner = new Summoner(response.id, response.name)
-    //         //alert (newSummoner.name)
-    //         //sleep(3000)
-    //         //users.push(newSummoner)
-    //         // localStorage.setItem('users', users)
-    //     }
-    // }
-    // xhttp.open("GET", url, true)
-    // xhttp.onload = function() {
-    //     // response = JSON.parse(this.responseText)
-    //     // newSummoner = new Summoner(response.id, response.name)
-    //     alert (newSummoner.name)
-    //     users.push(newSummoner)
-    // }
-    // xhttp.send()
+    
     fetch(url)
     .then(response => response.json())
     .then(summonerInfo => {
         console.log(summonerInfo)
         newSummoner = new Summoner(summonerInfo['id'], summonerInfo['name']);
         // users.push[newSummoner]
-        //localStorage.setItem('users', newSummoner)
+        localStorage.setItem('userInfo', JSON.stringify(newSummoner))
     })
-    .then(
-        console.log(newSummoner)
-    )
+
+    let info = JSON.parse(localStorage.getItem('userInfo'))
+    newSummoner = new Summoner(info.id, info.name)
+    console.log(newSummoner.name)
+    //users.push(newSummoner)
+    //localStorage.setItem('users', users)
 }
 
 function getUsers() {
