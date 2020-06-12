@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Week 8 Notes</h1>
+    <h2>Transitions and Transformations</h2>
+    <p>Transitions and transformations are a powerful way to, as the name entails, alter the look of the page. The css code for tranistioning anything is this</p>
+    <code>div {
+        transition: [property] [duration] [timing-function] [delay];
+      }</code>
+      <h3>Transition Property</h3>
+      <p>The transition property is required and tells it what to do ie. enlarge, shrink, etc.</p>
+      <h3>Transition Duration</h3>
+      <p>Transition duration tells you how long it will take to acccomplish that task and is also required. This parameter can be specified in milliseconds or seconds</p>
+      <code>  div {
+        transition-duration: 3s;
+      }</code>
+      <h3>Transformations</h3>
+      <p>While transitions move the object or change its size, transform changes the element completely. Transform can mainly do things like skew an element or translate it</p>
+      <code>div {
+        transform: skewX(25deg);
+        transform: skewY(10deg);
+        transform: skew(25deg, 10deg);
+      }</code>
+      <h2>Canvas, SVG, and Drag and Drop</h2>
+      <p>These functions are different dynamic functions done on html using javascript</p>
+      <h3>Canvas</h3>
+      <p>The canvas property allows you to draw on the page dynamically and on the fly. See below</p>
+      <canvas width="200" height="100" style="border:1px solid #000000;"></canvas>
+      <h3>SVG</h3>
+      <p>SVG stands for Scalable Vector Graphics and it defines vector based graphics in XML. You can create and edit shapes using this.<p>
+        <svg width="100" height="100">
+            <circle cx="50" cy="50" r="40" stroke="green" stroke-width="4" fill="yellow" /></svg>
+    <h3>Drag and Drop</h3>
+    <p>Drag and drop is a system that combines html and javascript in order to dynamically move an element by dragging and dropping</p>
+    
+</body>
+</html>
