@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 10 Notes</title>
+</head>
+<body>
+    <header></header>
+    <main>
+        <h1>Form Validation and Fetch</h1>
+        <h2>Form Validation</h2>
+        <p>Form validation is a way for the developer to limit the types of inputs for the user. This allows the user to be able to input usable data for the developer. Examples of this can be found in logins, account creation, and payment options in differnt websites. Whenever a form requires you to fill out a specific piece of information or fill it out in a certain way, this is a form of form validation.</p>
+        <p>Form validation can use many techniques such as</p>
+        <ul>
+            <li>Required</li>
+            <li>Min and Max</li>
+            <li>Regular Expressions</li>
+            <li>Type</li>
+            <li>Pattern</li>
+        </ul>
+        <h3>Required</h3>
+        <p>The required keyword is used in an html tag to produce a input that is required for the user to write in, like this one.</p>
+        <input type="text" required><br>
+        <h3>Min and Max</h3>
+        <p>These keywords add constraints to your input field for how long or short it can be. Here is an example from the Mozilla Firefox Developer Site.</p>
+        <form>
+            <div>
+              <label for="choose">Would you prefer a banana or a cherry?</label>
+              <input type="text" id="choose" name="i_like" required minlength="6" maxlength="6">
+            </div>
+            <div>
+              <label for="number">How many would you like?</label>
+              <input type="number" id="number" name="amount" value="1" min="1" max="10">
+            </div>
+            <div>
+              <button>Submit</button>
+            </div>
+          </form>
+          <br>
+          <h3>Regular Experessions</h3>
+          <p>Regular Expressions limit the user specifically what they can input based on a specific set of keys that you state are able to be used.</p>
+          <form>
+            <label for="choose">Would you prefer a banana or a cherry?</label>
+            <input id="choose" name="i_like" required pattern="[Bb]anana|[Cc]herry">
+            <button>Submit</button>
+          </form>
+          <h3>Using JavaScript</h3>
+          <p>JavaScript also has a form validation api that allows the user to easily use form validation in JavaScript. This API is called Constraint Validation API and the documentation can be found <a href="https://developer.mozilla.org/en-US/docs/Web/API/Constraint_validation">here</a></p>
+          <h2>Fetch</h2>
+          <p>Fetch is a quick way for the user to make an API call using an XMLHTTP request. I usually follows this pattern.</p>
+          <code>
+              fetch('insertUrlHere.dev')
+              .then(response => response.json)
+              .then( data => function() {
+                  //add code here
+                  console.log(data)
+              }
+              )
+          </code>
+          <p>Fetch can also take in a second parameter to control different settings</p>
+          <code>
+            const response = await fetch(url, {
+                method: 'POST', // *GET, POST, PUT, DELETE, etc.
+                mode: 'cors', // no-cors, *cors, same-origin
+                cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+                credentials: 'same-origin', // include, *same-origin, omit
+                headers: {
+                  'Content-Type': 'application/json'
+                  // 'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                redirect: 'follow', // manual, *follow, error
+                referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+                body: JSON.stringify(data) // body data type must match "Content-Type" header
+              });
+          </code>
+          <p>Different settigns that fetch can manipulate are credentials, whether you are pushing data in or pulling it out, etc.</p>
+    </main>
+    <footer></footer>
+</body>
+</html>
