@@ -1,9 +1,11 @@
 import { Summoner } from "./summoner.js";
 
-let api = "RGAPI-defef8b1-768e-4e79-9efa-e89ced0056a9";
-let users = [];
+let api = "RGAPI-04639b47-7fea-4e37-9560-cf85e979a092";
+
+
 window.addEventListener('load', function() {
-    getUsers();
+    let users = JSON.parse(localStorage.getItem('team'))
+    displayUsers(users);
 })
 
 document.getElementById('add').addEventListener('click', addUsers);
@@ -22,15 +24,13 @@ This Function is used to grab a single summoner information using the api call. 
 we store the summoner data in local storage
 */
 function getSingleSummoner(name) {
-    let newSummoner;
     const url = "https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/"+ name +"?api_key=" + api;
     
     fetch(url)
     .then(response => response.json())
     .then(summonerInfo => {
-        //console.log(summonerInfo)
-        newSummoner = new Summoner(summonerInfo['id'], summonerInfo['name']);
-        localStorage.setItem('userInfo', JSON.stringify(newSummoner))
+        let template = new Summoner(summonerInfo.id, summonerInfo.name)
+        localStorage.userInfo = JSON.stringify(template)
     })
 }
 
@@ -40,31 +40,65 @@ a summoner onto the textbox this will grab usere info store it into local storag
 of summoners
 */
 function addUsers() {
-    // let name = document.getElementById("name").value;
-    // const url = "https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/"+ name +"?api_key=" + api;
-    // getSingleSummoner(name)
 
-    // setTimeout(function() {
-    //     users.push(newSummoner)
-    // }, 2000)
-    // let newSummoner = new Summoner(info.id, info.name)
-    let newSummoner;
+    let newSummoner = new Summoner("", "")
+    //search for a single summoner
     let name = document.getElementById('name').value
-    const url = "https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + name + "?api_key=" + api;
+    const url = "https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/"+ name +"?api_key=" + api;
     
-    fetch(url)
-    .then(response => response.json())
-    .then(summonerInfo => {
-        //console.log(summonerInfo)
-        newSummoner = new Summoner(summonerInfo.id, summonerInfo.name);
-        localStorage.setItem('userInfo', JSON.stringify(newSummoner))
-        users.push[newSummoner]
-    })
+    getSingleSummoner(name)
+
+    //get the old information
+    let newUsers = getUsers()
+    
+    // if (localStorage.getItem('team') === null)
+    // {
+    //     newUsers = []
+    // }
+    // else {
+    //     newUsers.push(localStorage.getItem('team'))
+    // }
+       
+
+    setTimeout(function() {
+    //grab the new information
+    newSummoner = localStorage.userInfo
+    console.log(newSummoner)
+    
+
+    //push new information into the newUsers array
+    newUsers.push(newSummoner)
+    
+    
+    //overwrite team
+    localStorage.setItem('team', JSON.stringify(newUsers))
+    }, 600)
+    
 }
 
+/*
+This function will be used to grab the array of users in local storage and will set the sent in array to that
+*/
 function getUsers() {
-    if(users = localStorage.getItem("users")) {
-        document.getElementById("users").innerHTML = users[0].name
+    let users = []
+    if (localStorage.getItem('team') === null)
+    {
+        users = []
+    }
+    else {
+        users = JSON.parse(localStorage.getItem('team'))
+    }
+    return users
+}
+
+
+
+function displayUsers(users) {
+    if(users != null) {
+        users.forEach(element => {
+            document.getElementById('users').innerHTML += JSON.parse(element).name + '<br>'
+        });
+        
     }
     else {
         document.getElementById("users").innerHTML = "You currently have no players on your team"
