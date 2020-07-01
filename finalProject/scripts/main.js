@@ -101,6 +101,7 @@ function displayUsers(users) {
     if(users != null) {
         users.forEach(element => {
             document.getElementById('users').innerHTML += '<div class=\'summoner\' id=\'' + it + '\'>' + JSON.parse(element).name + '<button id=\'' + 'delete' + it + '\'>X</div>' + '<br>'
+            document.getElementById('delete'+it).addEventListener('click', deleteUser)
         });
         
     }
