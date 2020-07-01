@@ -43,14 +43,6 @@ function addUsers() {
 
     //get the old information
     let newUsers = getUsers()
-    
-    // if (localStorage.getItem('team') === null)
-    // {
-    //     newUsers = []
-    // }
-    // else {
-    //     newUsers.push(localStorage.getItem('team'))
-    // }
        
 
     setTimeout(function() {
@@ -65,8 +57,11 @@ function addUsers() {
     
     //overwrite team
     localStorage.setItem('team', JSON.stringify(newUsers))
+
+    //reload information
+    displayUsers(newUsers)
+
     }, 600)
-    
 }
 
 /*
@@ -84,12 +79,28 @@ function getUsers() {
     return users
 }
 
+/** This function will delete the user that was clicked */
+function deleteUser() {
+    //cut out the word delete from the id
+    let number = this.id.slice(6)
+    //grab the table from local storage
+    let table = JSON.parse(localStorage.getItem('team'))
+    //splice the table
+    table.splice(parseInt(number), 1)
+    //save table
+    localStorage.setItem('team', JSON.stringify(table))
+    //display table
+    displayUsers(table)
+}
 
-
+/**
+ * This function will diplay the current users in the database, it will be reused quite often
+ */
 function displayUsers(users) {
+    let it = 0
     if(users != null) {
         users.forEach(element => {
-            document.getElementById('users').innerHTML += JSON.parse(element).name + '<br>'
+            document.getElementById('users').innerHTML += '<div class=\'summoner\' id=\'' + it + '\'>' + JSON.parse(element).name + '<button id=\'' + 'delete' + it + '\'>X</div>' + '<br>'
         });
         
     }
