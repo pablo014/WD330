@@ -18,12 +18,21 @@ we store the summoner data in local storage
 */
 function getSingleSummoner(name) {
     const url = "https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/"+ name +"?api_key=" + api;
+    const rankUrl = "https://na1.api.riotgames.com/lol/league/v4/entries/by-summoner/"
     
     fetch(url)
     .then(response => response.json())
     .then(summonerInfo => {
-        let template = new Summoner(summonerInfo.id, summonerInfo.name)
-        localStorage.userInfo = JSON.stringify(template)
+        
+        fetch(rankUrl + summonerInfo.id + "?api_key=" + api)
+        .then(response => response.json())
+        .then(rankInfo => {
+            let template = new Summoner(summonerInfo.id, summonerInfo.name, rankInfo.tier)
+            localStorage.userInfo = JSON.stringify(template)
+        }
+        )
+        // let template = new Summoner(summonerInfo.id, summonerInfo.name)
+        // localStorage.userInfo = JSON.stringify(template)
     })
 }
 
