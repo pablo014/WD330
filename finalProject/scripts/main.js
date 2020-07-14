@@ -1,6 +1,6 @@
 import { Summoner } from "./summoner.js";
 
-let api = "RGAPI-04639b47-7fea-4e37-9560-cf85e979a092";
+let api = "RGAPI-15ab129c-85d9-4241-a7fb-a06bbda7ffdf";
 
 
 window.addEventListener('load', function() {
