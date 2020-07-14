@@ -27,7 +27,8 @@ function getSingleSummoner(name) {
         fetch(rankUrl + summonerInfo.id + "?api_key=" + api)
         .then(response => response.json())
         .then(rankInfo => {
-            let template = new Summoner(summonerInfo.id, summonerInfo.name, rankInfo.tier)
+            console.log(rankInfo[0].tier)
+            let template = new Summoner(summonerInfo.id, summonerInfo.name, rankInfo[0].tier)
             localStorage.userInfo = JSON.stringify(template)
         }
         )
