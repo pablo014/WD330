@@ -108,7 +108,7 @@ function deleteUser() {
  */
 function displayUsers(users) {
     let it = 0
-    if(users != null) {
+    if(users != null || users.length != 0) {
         users.forEach(element => {
             document.getElementById('users').innerHTML += '<div class=\'summoner\' id=\'' + it + '\'>' + JSON.parse(element).name + '<button id=\'' + 'delete' + it + '\'>X</div>' + '<br>'
             document.getElementById('delete'+it).addEventListener('click', deleteUser)
