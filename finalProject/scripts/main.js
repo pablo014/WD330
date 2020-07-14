@@ -71,7 +71,7 @@ function addUsers() {
     //reload information
     displayUsers(newUsers)
 
-    }, 600)
+    }, 700)
 }
 
 /*
@@ -107,11 +107,43 @@ function deleteUser() {
  * This function will diplay the current users in the database, it will be reused quite often
  */
 function displayUsers(users) {
+    document.getElementById('users').innerHTML = ''
     let it = 0
     if(users != null) {
         if(users.length != 0) {
         users.forEach(element => {
-            document.getElementById('users').innerHTML += '<div class=\'summoner\' id=\'' + it + '\'>'  + '<button id=\'' + 'delete' + it + '\'><img src=\'../img/delete.png\' class=\'thumbnail\'> </button>' + JSON.parse(element).name + '</div>' + '<br>'
+            //document.getElementById('users').innerHTML += '<div class=\'summoner\' id=\'' + it + '\'>'  + '<button id=\'' + 'delete' + it + '\'><img src=\'../img/delete.png\' class=\'thumbnail\'></button>' + JSON.parse(element).name
+            switch(JSON.parse(element).rank) {
+                case 'IRON':
+                    document.getElementById('users').innerHTML += '<div class=\'summoner\' id=\'' + it + '\'>'  + '<button id=\'' + 'delete' + it + '\'><img src=\'../img/delete.png\' class=\'thumbnail\'></button>' + JSON.parse(element).name + '<img src=\'../img/iron.png\' class=\'rank\'></div>'
+                    break;
+                case 'BRONZE':
+                    document.getElementById('users').innerHTML += '<div class=\'summoner\' id=\'' + it + '\'>'  + '<button id=\'' + 'delete' + it + '\'><img src=\'../img/delete.png\' class=\'thumbnail\'></button>' + JSON.parse(element).name + '<img src=\'../img/bronze.png\' class=\'rank\'></div>'
+                    break;
+                case 'SILVER':
+                    document.getElementById('users').innerHTML += '<div class=\'summoner\' id=\'' + it + '\'>'  + '<button id=\'' + 'delete' + it + '\'><img src=\'../img/delete.png\' class=\'thumbnail\'></button>' + JSON.parse(element).name + '<img src=\'../img/silver.png\' class=\'rank\'></div>'
+                    break;
+                case 'GOLD':
+                    document.getElementById('users').innerHTML += '<div class=\'summoner\' id=\'' + it + '\'>'  + '<button id=\'' + 'delete' + it + '\'><img src=\'../img/delete.png\' class=\'thumbnail\'></button>' + JSON.parse(element).name + '<img src=\'../img/gold.png\' class=\'rank\'></div>'
+                    break;
+                case 'PLATINUM':
+                    document.getElementById('users').innerHTML += '<div class=\'summoner\' id=\'' + it + '\'>'  + '<button id=\'' + 'delete' + it + '\'><img src=\'../img/delete.png\' class=\'thumbnail\'></button>' + JSON.parse(element).name + '<img src=\'../img/platinum.png\' class=\'rank\'></div>'
+                    break;
+                case 'DIAMOND':
+                    document.getElementById('users').innerHTML += '<div class=\'summoner\' id=\'' + it + '\'>'  + '<button id=\'' + 'delete' + it + '\'><img src=\'../img/delete.png\' class=\'thumbnail\'></button>' + JSON.parse(element).name + '<img src=\'../img/diamond.png\' class=\'rank\'></div>'
+                    break;
+                case 'MASTER':
+                    document.getElementById('users').innerHTML += '<div class=\'summoner\' id=\'' + it + '\'>'  + '<button id=\'' + 'delete' + it + '\'><img src=\'../img/delete.png\' class=\'thumbnail\'></button>' + JSON.parse(element).name + '<img src=\'../img/master.png\' class=\'rank\'></div>'
+                    break;
+                case 'GRANDMASTER':
+                    document.getElementById('users').innerHTML += '<div class=\'summoner\' id=\'' + it + '\'>'  + '<button id=\'' + 'delete' + it + '\'><img src=\'../img/delete.png\' class=\'thumbnail\'></button>' + JSON.parse(element).name + '<img src=\'../img/grandmaster.png\' class=\'rank\'></div>'
+                    break;
+                case 'CHALLENGER':
+                    document.getElementById('users').innerHTML += '<div class=\'summoner\' id=\'' + it + '\'>'  + '<button id=\'' + 'delete' + it + '\'><img src=\'../img/delete.png\' class=\'thumbnail\'></button>' + JSON.parse(element).name + '<img src=\'../img/challenger.png\' class=\'rank\'></div>'
+                    break;
+                default:
+                    document.getElementById('users').innerHTML += '<div class=\'summoner\' id=\'' + it + '\'>'  + '<button id=\'' + 'delete' + it + '\'><img src=\'../img/delete.png\' class=\'thumbnail\'></button>' + JSON.parse(element).name + '<img src=\'../img/unranked.png\' class=\'rank\'></div>'
+            }
             document.getElementById('delete'+it).addEventListener('click', deleteUser)
         });
         }
