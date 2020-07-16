@@ -124,6 +124,42 @@ function deleteUser() {
     displayUsers(table)
 }
 
+function displayRank(rank) {
+    switch(rank) {
+    case 'IRON': 
+        console.log('<img src=\'../img/iron.png\' class=\'rank\'>')
+        return '<img src=\'../img/iron.png\' class=\'rank\'>';
+        break;
+    case 'BRONZE':
+        return '<img src=\'../img/bronze.png\' class=\'rank\'>';
+        break;
+    case 'SILVER':
+        return '<img src=\'../img/silver.png\' class=\'rank\'>';
+        break;
+    case 'GOLD':
+        return '<img src=\'../img/gold.png\' class=\'rank\'>';
+        break;
+    case 'PLATINUM':
+        return '<img src=\'../img/platinum.png\' class=\'rank\'>';
+        break;
+    case 'DIAMOND':
+        return '<img src=\'../img/diamond.png\' class=\'rank\'>';
+        break;
+    case 'MASTER':
+        return '<img src=\'../img/master.png\' class=\'rank\'>';
+        break;
+    case 'GRANDMASTER':
+        return '<img src=\'../img/grandmaster.png\' class=\'rank\'>';
+        break;
+    case 'CHALLENGER':
+        return '<img src=\'../img/challenger.png\' class=\'rank\'>';
+        break;
+    default:
+        return '<img src=\'../img/unranked.png\' class=\'rank\'>';
+        break;
+    }
+}
+
 /**
  * This function will diplay the current users in the database, it will be reused quite often
  */
@@ -136,37 +172,43 @@ function displayUsers(users) {
             //document.getElementById('users').innerHTML += '<div class=\'summoner\' id=\'' + it + '\'>'  + '<button id=\'' + 'delete' + it + '\'><img src=\'../img/delete.png\' class=\'thumbnail\'></button>' + JSON.parse(element).name
             switch(JSON.parse(element).flexRank) {
                 case 'IRON':
-                    document.getElementById('users').innerHTML += '<div class=\'summoner\' id=\'' + it + '\'>'  + '<button id=\'' + 'delete' + it + '\'><img src=\'../img/delete.png\' class=\'thumbnail\'></button>' + JSON.parse(element).name + '<img src=\'../img/iron.png\' class=\'rank\'></div>'
+                    document.getElementById('users').innerHTML += '<div class=\'summoner\' id=\'' + it + '\'>'  + '<button id=\'' + 'delete' + it + '\'><img src=\'../img/delete.png\' class=\'thumbnail\'></button>' + JSON.parse(element).name + '<button id=\'show'+ it +'\'>Show Details</button>' + '<div class=\'hidden\'><p>Solo/Duo Stats</p><img src=\'../img/iron.png\' class=\'rank\'><br><p>Wins: ' + JSON.parse(element).soloWins + '</p><p>Losses: ' + JSON.parse(element).soloLosses + '</p>' + '<br><p>Flex Stats</p>' + displayRank(JSON.parse(element).soloRank) + '<br><p>Wins: ' + JSON.parse(element).flexWins + '</p><p>Losses: ' + JSON.parse(element).flexLosses + '</p>' + '</div></div>'
                     break;
                 case 'BRONZE':
-                    document.getElementById('users').innerHTML += '<div class=\'summoner\' id=\'' + it + '\'>'  + '<button id=\'' + 'delete' + it + '\'><img src=\'../img/delete.png\' class=\'thumbnail\'></button>' + JSON.parse(element).name + '<img src=\'../img/bronze.png\' class=\'rank\'></div>'
+                    document.getElementById('users').innerHTML += '<div class=\'summoner\' id=\'' + it + '\'>'  + '<button id=\'' + 'delete' + it + '\'><img src=\'../img/delete.png\' class=\'thumbnail\'></button>' + JSON.parse(element).name + '<button id=\'show'+ it +'\'>Show Details</button>' + '<div id=\'info'+ it + '\' class=\'hidden\'><p>Solo/Duo Stats</p><img src=\'../img/bronze.png\' class=\'rank\'><br><p>Wins: ' + JSON.parse(element).soloWins + '</p><p>Losses: ' + JSON.parse(element).soloLosses + '</p>'  + '<p>Flex Stats</p>' + displayRank(JSON.parse(element).soloRank) + '<br><p>Wins: ' + JSON.parse(element).flexWins + '</p><p>Losses: ' + JSON.parse(element).flexLosses + '</p>' + '</div></div>'
                     break;
                 case 'SILVER':
-                    document.getElementById('users').innerHTML += '<div class=\'summoner\' id=\'' + it + '\'>'  + '<button id=\'' + 'delete' + it + '\'><img src=\'../img/delete.png\' class=\'thumbnail\'></button>' + JSON.parse(element).name + '<img src=\'../img/silver.png\' class=\'rank\'></div>'
+                    document.getElementById('users').innerHTML += '<div class=\'summoner\' id=\'' + it + '\'>'  + '<button id=\'' + 'delete' + it + '\'><img src=\'../img/delete.png\' class=\'thumbnail\'></button>' + JSON.parse(element).name + '<button id=\'show'+ it +'\'>Show Details</button>' + '<div id=\'info'+ it + '\' class=\'hidden\'><p>Solo/Duo Stats</p><img src=\'../img/silver.png\' class=\'rank\'><br><p>Wins: ' + JSON.parse(element).soloWins + '</p><p>Losses: ' + JSON.parse(element).soloLosses + '</p>'  + '<p>Flex Stats</p>' + displayRank(JSON.parse(element).soloRank) + '<br><p>Wins: ' + JSON.parse(element).flexWins + '</p><p>Losses: ' + JSON.parse(element).flexLosses + '</p>' + '</div></div>'
                     break;
                 case 'GOLD':
-                    document.getElementById('users').innerHTML += '<div class=\'summoner\' id=\'' + it + '\'>'  + '<button id=\'' + 'delete' + it + '\'><img src=\'../img/delete.png\' class=\'thumbnail\'></button>' + JSON.parse(element).name + '<img src=\'../img/gold.png\' class=\'rank\'></div>'
+                    document.getElementById('users').innerHTML += '<div class=\'summoner\' id=\'' + it + '\'>'  + '<button id=\'' + 'delete' + it + '\'><img src=\'../img/delete.png\' class=\'thumbnail\'></button>' + JSON.parse(element).name + '<button id=\'show'+ it +'\'>Show Details</button>' + '<div id=\'info'+ it + '\'  class=\'hidden\'><p>Solo/Duo Stats</p><img src=\'../img/gold.png\' class=\'rank\'><br><p>Wins: ' + JSON.parse(element).soloWins + '</p><p>Losses: ' + JSON.parse(element).soloLosses + '</p>'  + '<p>Flex Stats</p>' + displayRank(JSON.parse(element).soloRank) + '<br><p>Wins: ' + JSON.parse(element).flexWins + '</p><p>Losses: ' + JSON.parse(element).flexLosses + '</p>' + '</div></div>'
                     break;
                 case 'PLATINUM':
-                    document.getElementById('users').innerHTML += '<div class=\'summoner\' id=\'' + it + '\'>'  + '<button id=\'' + 'delete' + it + '\'><img src=\'../img/delete.png\' class=\'thumbnail\'></button>' + JSON.parse(element).name + '<img src=\'../img/platinum.png\' class=\'rank\'></div>'
+                    document.getElementById('users').innerHTML += '<div class=\'summoner\' id=\'' + it + '\'>'  + '<button id=\'' + 'delete' + it + '\'><img src=\'../img/delete.png\' class=\'thumbnail\'></button>' + JSON.parse(element).name + '<button id=\'show'+ it +'\'>Show Details</button>' + '<div id=\'info'+ it + '\'  class=\'hidden\'><p>Solo/Duo Stats</p><img src=\'../img/platinum.png\' class=\'rank\'><br><p>Wins: ' + JSON.parse(element).soloWins + '</p><p>Losses: ' + JSON.parse(element).soloLosses + '</p>'  + '<p>Flex Stats</p>' + displayRank(JSON.parse(element).soloRank) + '<br><p>Wins: ' + JSON.parse(element).flexWins + '</p><p>Losses: ' + JSON.parse(element).flexLosses + '</p>' + '</div></div>'
                     break;
                 case 'DIAMOND':
-                    document.getElementById('users').innerHTML += '<div class=\'summoner\' id=\'' + it + '\'>'  + '<button id=\'' + 'delete' + it + '\'><img src=\'../img/delete.png\' class=\'thumbnail\'></button>' + JSON.parse(element).name + '<img src=\'../img/diamond.png\' class=\'rank\'></div>'
+                    document.getElementById('users').innerHTML += '<div class=\'summoner\' id=\'' + it + '\'>'  + '<button id=\'' + 'delete' + it + '\'><img src=\'../img/delete.png\' class=\'thumbnail\'></button>' + JSON.parse(element).name + '<button id=\'show'+ it +'\'>Show Details</button>' + '<div id=\'info'+ it + '\'  class=\'hidden\'><p>Solo/Duo Stats</p><img src=\'../img/diamond.png\' class=\'rank\'><br><p>Wins: ' + JSON.parse(element).soloWins + '</p><p>Losses: ' + JSON.parse(element).soloLosses + '</p>'  + '<p>Flex Stats</p>' + displayRank(JSON.parse(element).soloRank) + '<br><p>Wins: ' + JSON.parse(element).flexWins + '</p><p>Losses: ' + JSON.parse(element).flexLosses + '</p>' + '</div></div>'
                     break;
                 case 'MASTER':
-                    document.getElementById('users').innerHTML += '<div class=\'summoner\' id=\'' + it + '\'>'  + '<button id=\'' + 'delete' + it + '\'><img src=\'../img/delete.png\' class=\'thumbnail\'></button>' + JSON.parse(element).name + '<img src=\'../img/master.png\' class=\'rank\'></div>'
+                    document.getElementById('users').innerHTML += '<div class=\'summoner\' id=\'' + it + '\'>'  + '<button id=\'' + 'delete' + it + '\'><img src=\'../img/delete.png\' class=\'thumbnail\'></button>' + JSON.parse(element).name + '<button id=\'show'+ it +'\'>Show Details</button>' + '<div id=\'info'+ it + '\'  class=\'hidden\'><p>Solo/Duo Stats</p><img src=\'../img/master.png\' class=\'rank\'><br><p>Wins: ' + JSON.parse(element).soloWins + '</p><p>Losses: ' + JSON.parse(element).soloLosses + '</p>'  + '<p>Flex Stats</p>' + displayRank(JSON.parse(element).soloRank) + '<br><p>Wins: ' + JSON.parse(element).flexWins + '</p><p>Losses: ' + JSON.parse(element).flexLosses + '</p>' + '</div></div>'
                     break;
                 case 'GRANDMASTER':
-                    document.getElementById('users').innerHTML += '<div class=\'summoner\' id=\'' + it + '\'>'  + '<button id=\'' + 'delete' + it + '\'><img src=\'../img/delete.png\' class=\'thumbnail\'></button>' + JSON.parse(element).name + '<img src=\'../img/grandmaster.png\' class=\'rank\'></div>'
+                    document.getElementById('users').innerHTML += '<div class=\'summoner\' id=\'' + it + '\'>'  + '<button id=\'' + 'delete' + it + '\'><img src=\'../img/delete.png\' class=\'thumbnail\'></button>' + JSON.parse(element).name + '<button id=\'show'+ it +'\'>Show Details</button>' + '<div id=\'info'+ it + '\'  class=\'hidden\'><p>Solo/Duo Stats</p><img src=\'../img/grandmaster.png\' class=\'rank\'><br><p>Wins: ' + JSON.parse(element).soloWins + '</p><p>Losses: ' + JSON.parse(element).soloLosses + '</p>'  + '<p>Flex Stats</p>' + displayRank(JSON.parse(element).soloRank) + '<br><p>Wins: ' + JSON.parse(element).flexWins + '</p><p>Losses: ' + JSON.parse(element).flexLosses + '</p>' + '</div></div>'
                     break;
                 case 'CHALLENGER':
-                    document.getElementById('users').innerHTML += '<div class=\'summoner\' id=\'' + it + '\'>'  + '<button id=\'' + 'delete' + it + '\'><img src=\'../img/delete.png\' class=\'thumbnail\'></button>' + JSON.parse(element).name + '<img src=\'../img/challenger.png\' class=\'rank\'></div>'
+                    document.getElementById('users').innerHTML += '<div class=\'summoner\' id=\'' + it + '\'>'  + '<button id=\'' + 'delete' + it + '\'><img src=\'../img/delete.png\' class=\'thumbnail\'></button>' + JSON.parse(element).name + '<button id=\'show'+ it +'\'>Show Details</button>' + '<div id=\'info'+ it + '\'  class=\'hidden\'><p>Solo/Duo Stats</p><img src=\'../img/challenger.png\' class=\'rank\'><br><p>Wins: ' + JSON.parse(element).soloWins + '</p><p>Losses: ' + JSON.parse(element).soloLosses + '</p>'  + '<p>Flex Stats</p>' + displayRank(JSON.parse(element).soloRank) + '<br><p>Wins: ' + JSON.parse(element).flexWins + '</p><p>Losses: ' + JSON.parse(element).flexLosses + '</p>' + '</div></div>'
                     break;
                 default:
-                    document.getElementById('users').innerHTML += '<div class=\'summoner\' id=\'' + it + '\'>'  + '<button id=\'' + 'delete' + it + '\'><img src=\'../img/delete.png\' class=\'thumbnail\'></button>' + JSON.parse(element).name + '<img src=\'../img/unranked.png\' class=\'rank\'></div>'
+                    document.getElementById('users').innerHTML += '<div class=\'summoner\' id=\'' + it + '\'>'  + '<button id=\'' + 'delete' + it + '\'><img src=\'../img/delete.png\' class=\'thumbnail\'></button>' + JSON.parse(element).name + '<button id=\'show'+ it +'\'>Show Details</button>' + '<div id=\'info'+ it + '\'  class=\'hidden\'><p>Solo/Duo Stats</p><img src=\'../img/unranked.png\' class=\'rank\'><br><p>Wins: ' + JSON.parse(element).soloWins + '</p><p>Losses: ' + JSON.parse(element).soloLosses + '</p>'  + '<p>Flex Stats</p>' + displayRank(JSON.parse(element).soloRank) + '<br><p>Wins: ' + JSON.parse(element).flexWins + '</p><p>Losses: ' + JSON.parse(element).flexLosses + '</p>' + '</div></div>'
             }
-            document.getElementById('delete'+it).addEventListener('click', deleteUser)
+            document.getElementById('users').innerHTML += '<br>'
+            //document.getElementById('users').innerHTML += '<div class=\'summoner\' id=\'' + it + '\'>'  + '<button id=\'' + 'delete' + it + '\'><img src=\'../img/delete.png\' class=\'thumbnail\'></button>' + JSON.parse(element).name + '<button id=\'show'+ it +'\'>Show Details</button>' + '<div class=\'hidden\'>' + displayRank(JSON.parse(element).flexRank) + '</div></div>'
+            it++
         });
+        for (let i = 0; i < users.length; i++) {
+            document.getElementById('delete'+i).addEventListener('click', deleteUser)
+            document.getElementById('show' + i).addEventListener('click', toggleInfo)
+        }
         }
         else {
             document.getElementById("users").innerHTML = "You currently have no players on your team"
@@ -175,4 +217,11 @@ function displayUsers(users) {
     else {
         document.getElementById("users").innerHTML = "You currently have no players on your team"
     }
+}
+
+function toggleInfo() {
+    //cut out the word show from the id
+    let number = this.id.slice(4)
+    console.log(number)
+    document.getElementById('info'+number).classList.toggle('show')
 }

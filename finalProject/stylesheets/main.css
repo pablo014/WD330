@@ -7,3 +7,22 @@
     height: 50px;
     width: 50px
 }
+
+.hidden {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+.summoner {
+    border-style: solid;
+    border-radius: 25px;
+    border-color: gray;
+    padding: 10px
+}
+
+button {
+    margin: 10px
+}
