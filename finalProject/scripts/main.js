@@ -1,6 +1,6 @@
 import { Summoner } from "./summoner.js";
 
-let api = "RGAPI-929f45c7-3d55-47e7-85c2-90812050fdd8";
+let api = "RGAPI-e5dd00d2-376f-47d5-ae7f-979c35d939fb";
 
 
 window.addEventListener('load', function() {
@@ -19,21 +19,42 @@ we store the summoner data in local storage
 function getSingleSummoner(name) {
     const url = "https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/"+ name +"?api_key=" + api;
     const rankUrl = "https://na1.api.riotgames.com/lol/league/v4/entries/by-summoner/"
+    const matchUrl = "https://na1.api.riotgames.com/lol/match/v4/matchlists/by-account/"
     
     fetch(url)
     .then(response => response.json())
     .then(summonerInfo => {
-        
         fetch(rankUrl + summonerInfo.id + "?api_key=" + api)
         .then(response => response.json())
         .then(rankInfo => {
-            console.log(rankInfo[0].tier)
-            let template = new Summoner(summonerInfo.id, summonerInfo.name, rankInfo[0].tier)
-            localStorage.userInfo = JSON.stringify(template)
+            if (rankInfo.length == 0){
+                let template = new Summoner(summonerInfo.id, summonerInfo.accountId, summonerInfo.name, 'NA', 0, 0)
+                localStorage.userInfo = JSON.stringify(template)
+            }
+            else if (rankInfo.length == 1) {
+                if(rankInfo[0].queueType == 'RANKED_SOLO_5x5') {
+                    let template = new Summoner(summonerInfo.id, summonerInfo.accountId, summonerInfo.name, 'NA', 0, 0, rankInfo[0].tier, rankInfo[0].wins, rankInfo[0].losses)
+                    localStorage.userInfo = JSON.stringify(template)
+                }
+                else {
+                    let template = new Summoner(summonerInfo.id, summonerInfo.accountId, summonerInfo.name, rankInfo[0].tier, rankInfo[0].wins, rankInfo[0].losses)
+                    localStorage.userInfo = JSON.stringify(template)
+                }
+            }
+            else {
+                let template = new Summoner(summonerInfo.id, summonerInfo.accountId, summonerInfo.name, rankInfo[0].tier, rankInfo[0].wins, rankInfo[0].losses, rankInfo[1].tier, rankInfo[1].wins, rankInfo[1].losses)
+                localStorage.userInfo = JSON.stringify(template)
+            }
+            
+            // fetch(matchUrl + summonerInfo.accountId + "?endIndex=20&beginIndex=0&api_key=" + api)
+            // .then(response => response.json)
+            // .then(matchInfo => {
+            //     console.log(JSON.stringify(matchInfo))
+            //     let template = new Summoner(summonerInfo.accountId, summonerInfo.name, rankInfo[0].tier, matchInfo)
+            //     localStorage.userInfo = JSON.stringify(template)
+            // })
         }
         )
-        // let template = new Summoner(summonerInfo.id, summonerInfo.name)
-        // localStorage.userInfo = JSON.stringify(template)
     })
 }
 
@@ -113,7 +134,7 @@ function displayUsers(users) {
         if(users.length != 0) {
         users.forEach(element => {
             //document.getElementById('users').innerHTML += '<div class=\'summoner\' id=\'' + it + '\'>'  + '<button id=\'' + 'delete' + it + '\'><img src=\'../img/delete.png\' class=\'thumbnail\'></button>' + JSON.parse(element).name
-            switch(JSON.parse(element).rank) {
+            switch(JSON.parse(element).flexRank) {
                 case 'IRON':
                     document.getElementById('users').innerHTML += '<div class=\'summoner\' id=\'' + it + '\'>'  + '<button id=\'' + 'delete' + it + '\'><img src=\'../img/delete.png\' class=\'thumbnail\'></button>' + JSON.parse(element).name + '<img src=\'../img/iron.png\' class=\'rank\'></div>'
                     break;
