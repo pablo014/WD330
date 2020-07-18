@@ -26,3 +26,20 @@
 button {
     margin: 10px
 }
+
+h1 {
+    text-align: center;
+}
+
+#input {
+    text-align: center;
+}
+
+input {
+    width: 200px
+}
+
+.details {
+    position: absolute;
+    right: 10px
+}
