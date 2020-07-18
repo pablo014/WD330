@@ -5,6 +5,7 @@ let api = "RGAPI-5d699c14-3b1e-4c58-ba92-bbdc322e28b6";
 
 window.addEventListener('load', function() {
     let users = JSON.parse(localStorage.getItem('team'))
+    updateUsers(users)
     displayUsers(users);
 })
 
@@ -224,4 +225,15 @@ function toggleInfo() {
     let number = this.id.slice(4)
     console.log(number)
     document.getElementById('info'+number).classList.toggle('show')
+}
+
+function updateUsers(users) {
+    if (users != null) {
+        if(users.length != 0){
+            users.forEach(element => {
+                console.log(JSON.parse(element).name)
+                getSingleSummoner(JSON.parse(element).name)
+            })
+        }
+    }
 }
